@@ -20,6 +20,7 @@ class MainWindow(QtGui.QWidget):
 
         #初始化position
         self.m_DragPosition=self.pos()
+        self.m_drag=False
 
         self.resize(460,520)
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
@@ -49,7 +50,7 @@ class MainWindow(QtGui.QWidget):
             event.accept()
 
     def mouseMoveEvent(self, QMouseEvent):
-        if QMouseEvent.buttons() and Qt.LeftButton:
+        if QMouseEvent.buttons() and Qt.LeftButton and self.m_drag:
             self.move(QMouseEvent.globalPos()-self.m_DragPosition)
             QMouseEvent.accept()
 
